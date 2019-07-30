@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+
+<h1>this is home page</h1>
+
+<script>
+const all = ele => document.querySelectorAll(ele)
+const one = ele => document.querySelector(ele)
+const slide = _ => {
+  const wrap = one('.slide') // .slide 선택
+  const target = wrap.children[0] // .slide ul 선택
+  const len = target.children.length // .slide li 갯수
+  const height = target.clientHeight
+  // .slide ul의 너비 조정
+  target.style.cssText = `height:calc(100% * ${len});transition:1s`
+  // .slide li의 너비 조정
+  Array.from(target.children)
+  .forEach(ele => ele.style.cssText = `height:calc(100% / ${len});`)
+  // 화면 전환 실행
+  let pos = 0
+  setInterval(() => {
+    pos = (pos + 1) % len // 장면 선택
+    target.style.marginTop = `${-pos * height}px`
+  }, 1500) // 1500 = 1500ms = 1.5sec. 1.5초 마다 실행
+}
+window.onload = function () {
+  slide()
+}
+</script>
+
+<div class="slide">
+  <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+</div>
+
+
+{% for blog in posts %}
+    <div class="container"><br>
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title"> {{blog.title}} </h1>
+                <h6 class="class-subtitle mb-2 text-muted"> {{blog.pub_date}} </h6>
+                <p class="card-text"> {{blog.summary}} <a href ="{% url 'detail' blog.id %}" class="card-link">...more</a></p>
+            </div>
+        </div> <br>
+    </div>
+{% endfor %}
+
+{# First Previous 3 of 4 Next Last #}
+<div class = "container">
+
+{# First Previous #}
+
+{% if posts.has_previous %}
+<a href = "?page=1"> First </a>
+<a href = "?page={{posts.previous_page_number}}">Previous</a>
+{% endif %}
+
+{# 3 of 4 #}
+<span>{{posts.number}}</span>
+<span>of</span>
+<span>{{posts.paginator.num_pages}}</span>
+
+{# Next Last #}
+{% if posts.has_next %}
+<a href = "?page={{posts.next_page_number}}">Next</a>
+<a href = "?page={{posts.paginator.num_pages}}">Last</a>
+{% endif %}
+</div>
+
+{% endblock %}
+
+</html>
