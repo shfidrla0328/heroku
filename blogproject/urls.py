@@ -5,6 +5,8 @@ import blogapp.views
 import portfolio.views
 import accounts.urls
 import accounts.views
+import wordcount.urls
+import wordcount.views
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -14,4 +16,5 @@ urlpatterns = [
     path('portfolio/portfolio', portfolio.views.portfolio, name="portfolio"),
     path('blogapp/', include('blogapp.urls')),
     path('accounts/', include('accounts.urls')),
+    path('wordcount/', include('wordcount.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

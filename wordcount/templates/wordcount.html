@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+
+    <div class="container">
+    <br><br>
+        <h1>여기서 글자세기</h1>
+
+        <form action="{% url 'result' %}">
+            <textarea cols="40" rows="10" name="fulltext"></textarea>
+            <br><br>
+            <input class="btn btn-dark" type="submit" value="Count!">
+        </form>
+    </div>
+
+{% endblock %}
+
+</html>
