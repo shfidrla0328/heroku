@@ -1,0 +1,51 @@
+<input type = hidden>이 어떻게 쓰이는지 알아보기
+
+1. https://blog.shovelman.dev/818
+
+<input> 태그 : 사용자 입력 부분과 전송 기능을 제공
+ㄴ <hidden> : 해당 태그 안에 위치한 속성.
+		화면에 출력은 되지 않지만, 데이터를 보낼 때 유용.
+		대체적으로 서버에 데이터를 전송할 때 사용.
+		BUT 취약점이 많다.
+		굳이 사용자가 입력할 필요 없음. 자동으로 보내짐.
+
+2. http://www.homejjang.com/05/HiddenField.php
+
+ - 히든 필드 (Hidden Field)
+ : 사용자가 입력하거나 선택하는 정보는 아니지만 폼 전송 시에 같이 전송해줘야
+하는 정보를 담기 위해서 히든 필드 (Hidden Field)를 사용합니다.
+
+EX) 회원가입 시 사용자의 아이피를 받는 경우 히든필드에 넣어서 폼 전송 시 함께
+전송합니다.
+<input type = "hidden" name = "UserIP" value = "<?echo $REMOTE_ADDR?>">
+
+value 속성에 들어있는 "<?echo $REMOTE_ADDR?>"라는 값은 PHP코드의 일종입니다.
+사용자의 아이피를 인식하는 코드입니다.
+
+히든 필드는 화면에 출력되는 부분이 아니기 때문에 폼의 외형을 제작할 때는 아무런 
+영향을 미치지 않습니다. 그러나 웹 프로그램을 할 때는 아주 빈번하게 사용되는
+중요한 폼 필드 중 하나입니다.
+
+3. http://www.tcpschool.com/html-input-types/hidden
+
+<input type="hidden">은 사용자에게는 보이지 않는 숨겨진 입력 필드를 정의합니다.
+
+숨겨진 입력 필드는 렌더링이 끝난 웹 페이지에서는 전혀 보이지 않으며, 페이지 콘텐츠 
+내에서 그것을 볼 수 있게 만드는 방법도 없습니다.
+
+따라서 숨겨진 입력 필드는 폼 제출 시 사용자가 변경해서는 안 되는 데이터를 함께 
+보낼 때 유용하게 사용됩니다.
+
+이러한 입력 필드는 업데이트 되어야 하는 데이터베이스의 레코드를 저장하거나, 
+고유한 보안 토큰 등을 서버로 보낼 때 주로 사용됩니다.
+
+문법
+<input type = "hidden">
+
+EX) <form action = "/examples/media/action_target.php" method= "GET">
+	아이디 : <input type = "text" name = "user_id"><br>
+	비밀번호 : <input type = "password" name = "user_pw"><br>
+	<input type="hidden" id="gameToken" name="game_token" value="xm234jq">
+	<input type="submit">
+</form>
+
